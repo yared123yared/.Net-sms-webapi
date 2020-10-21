@@ -72,13 +72,8 @@ namespace smsapi.Migrations
 
             modelBuilder.Entity("smsapi.Model.Grade", b =>
                 {
-                    b.Property<int>("CoNo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Mark")
-                        .HasColumnType("int");
+                    b.Property<string>("CoNo")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SemesterId")
                         .HasColumnType("int");
@@ -86,7 +81,10 @@ namespace smsapi.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoNo");
+                    b.Property<int>("Mark")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoNo", "SemesterId", "StudentId");
 
                     b.ToTable("Grade");
                 });

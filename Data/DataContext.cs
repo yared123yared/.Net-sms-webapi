@@ -12,6 +12,20 @@ namespace smsapi.Data
         public DbSet<Faculty> Faculty { get; set; }
         public DbSet<Course> Course { get; set; }
         public DbSet<Grade> Grade { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Grade>().HasKey(x => new
+            {
+                x.CoNo,
+                x.SemesterId,
+                x.StudentId
+            });
+            modelBuilder.Entity<Student>().HasKey(x => x.StudentId);
+            modelBuilder.Entity<Faculty>().HasKey(x => x.FacultyId);
+            modelBuilder.Entity<Department>().HasKey(x => x.DepartmentId);
+            modelBuilder.Entity<Course>().HasKey(x => x.CoNo);
+        }
     }
 
 }

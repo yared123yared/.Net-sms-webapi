@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using smsapi.Data;
+using smsapi.Model;
 
 namespace smsapi
 {
@@ -29,7 +31,14 @@ namespace smsapi
 
         {
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("smsConnection")));
-            services.AddControllers();
+            services.AddControllers(setUpAction =>
+            {
+                setUpAction.ReturnHttpNotAcceptable = true;
+                setUpAction.OutputFormatters.Add(
+                    new XmlDataContractSerializerOutputFormatter());
+
+            });
+            services.AddScoped<IRepository<Student>, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

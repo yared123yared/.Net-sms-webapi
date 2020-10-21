@@ -52,15 +52,14 @@ namespace smsapi.Migrations
                 name: "Grade",
                 columns: table => new
                 {
-                    CoNo = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CoNo = table.Column<string>(nullable: false),
                     StudentId = table.Column<int>(nullable: false),
                     SemesterId = table.Column<int>(nullable: false),
                     Mark = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Grade", x => x.CoNo);
+                    table.PrimaryKey("PK_Grade", x => new { x.CoNo, x.SemesterId, x.StudentId });
                 });
 
             migrationBuilder.CreateTable(
