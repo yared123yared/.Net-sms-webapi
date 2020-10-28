@@ -59,3 +59,5 @@ C:\Users\yared\Documents\education\.Net\projects\smsapi\obj\Debug\netcoreapp3.1\
 C:\Users\yared\Documents\education\.Net\projects\smsapi\obj\Debug\netcoreapp3.1\smsapi.dll
 C:\Users\yared\Documents\education\.Net\projects\smsapi\obj\Debug\netcoreapp3.1\smsapi.pdb
 C:\Users\yared\Documents\education\.Net\projects\smsapi\obj\Debug\netcoreapp3.1\smsapi.genruntimeconfig.cache
+C:\Users\yared\Documents\education\.Net\projects\smsapi\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\yared\Documents\education\.Net\projects\smsapi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

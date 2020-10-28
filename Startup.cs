@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using smsapi.Data;
 using smsapi.Model;
+using AutoMapper;
+using Data;
 
 namespace smsapi
 {
@@ -31,6 +33,8 @@ namespace smsapi
 
         {
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("smsConnection")));
+            // Auto mapping
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers(setUpAction =>
             {
                 setUpAction.ReturnHttpNotAcceptable = true;
@@ -39,6 +43,7 @@ namespace smsapi
 
             });
             services.AddScoped<IRepository<Student>, StudentRepository>();
+            services.AddScoped<IRepository<Department>, DepartmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

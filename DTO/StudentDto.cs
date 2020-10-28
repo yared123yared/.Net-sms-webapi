@@ -1,8 +1,11 @@
-using System;
 
+
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace smsapi.DTO
 {
+
     public class StudentDto
     {
         [Required]
@@ -19,6 +22,9 @@ namespace smsapi.DTO
         public String Gender { get; set; }
         [Required]
         public string Email { get; set; }
-      
+        [Required]
+        public string FullName { get; set; }
+
+
     }
 }

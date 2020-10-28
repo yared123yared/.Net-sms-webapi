@@ -1,8 +1,13 @@
+using System.Runtime.Intrinsics.X86;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using smsapi.Data;
 using smsapi.Model;
 using System;
+
+using System.Collections.Generic;
+using smsapi.DTO;
+using AutoMapper;
 
 namespace smsapi.Controllers
 {
@@ -10,17 +15,19 @@ namespace smsapi.Controllers
     [Route("[controller]")]
     public class StudentController : ControllerBase
     {
+
         private readonly IRepository<Student> _repository;
-        public StudentController(IRepository<Student> repository)
+        private readonly IMapper _mapper;
+        public StudentController(IRepository<Student> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         [HttpGet("getAllStudents")]
         public async Task<IActionResult> GetStudents()
         {
             var model = await _repository.GetData();
-           va result-new List<StudentDto>();
-           
+            return Ok(_mapper.Map<IEnumerable<StudentDto>>(model));
         }
         [HttpGet("redirecttogoogle")]
         public IActionResult RedirectResult()
@@ -40,7 +47,7 @@ namespace smsapi.Controllers
         [HttpGet("getCreated")]
         public IActionResult GetCreatedResult()
         {
-            return Created("http://yayobe.com/myitem",new {name="yared"});
+            return Created("http://yayobe.com/myitem", new { name = "yared" });
         }
         [HttpGet("noContent")]
         public IActionResult NoContentResult()
@@ -58,28 +65,31 @@ namespace smsapi.Controllers
             return Unauthorized();
         }
         [HttpGet("okObjectResult")]
-        public IActionResult okObjectResult(){
-            var student = new ObjectResult( new {
-                fName="yared",
-                lName="solomon",
-                Age=54
+        public IActionResult okObjectResult()
+        {
+            var student = new ObjectResult(new
+            {
+                fName = "yared",
+                lName = "solomon",
+                Age = 54
             });
-             return student;
+            return student;
 
         }
         [HttpGet("getObjectStatusCodeRequest/{statusCode}")]
         public IActionResult ObjectResultWithStatus(int statusCode)
         {
-            var result = new ObjectResult(new {
-                statusCode=statusCode,
-                currentDate=DateTime.Now
+            var result = new ObjectResult(new
+            {
+                statusCode = statusCode,
+                currentDate = DateTime.Now
             });
-            result.StatusCode=statusCode;
+            result.StatusCode = statusCode;
             return result;
         }
-       
 
-        
-        
+
+
+
     }
 }
