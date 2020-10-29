@@ -31,7 +31,7 @@ namespace smsapi.Controllers
         {
             // here will be the department get by id method
             var model = await _repo.GetDataById(id);
-            return Ok(_mapper.Map<IEnumerable<DepartmentDto>>(model));
+            return Ok(_mapper.Map<DepartmentDto>(model));
         }
         [HttpPost("InsertDepartment")]
         public async Task<IActionResult> CreateDeoartment(DepartmentDto departmentDto)
