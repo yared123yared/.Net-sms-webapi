@@ -18,20 +18,22 @@ namespace Data
             throw new System.NotImplementedException();
         }
 
-        public Task<List<Department>> GetData()
+        public async Task<List<Department>> GetData()
         {
             //    Getting database data here
-            return _context.Department.ToListAsync();
+            return await _context.Department.ToListAsync();
         }
 
-        public Task<Department> GetDataById(int id)
+        public async Task<Department> GetDataById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Department.FirstOrDefaultAsync(x => x.DepartmentId == id);
         }
 
-        public Task<Department> UpdateData(Department student)
+        public async Task<Department> UpdateData(Department dept)
         {
-            throw new System.NotImplementedException();
+            _context.Department.Add(dept);
+            await _context.SaveChangesAsync();
+            return dept;
         }
     }
 }

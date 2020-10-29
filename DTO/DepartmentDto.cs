@@ -9,7 +9,7 @@ namespace smsapi.DTO
         public int DepartmentId { get; set; }
         [Required]
         public String DepartmentName { get; set; }
-        [Required]
-        public String FacultyId { get; set; }
+
+
     }
 }

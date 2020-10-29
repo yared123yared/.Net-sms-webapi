@@ -10,6 +10,7 @@ namespace smsapi.Profiles
             CreateMap<Model.Department, DepartmentDto>()
            .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.DepartmentId))
            .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.DepartmentName));
+            CreateMap<DepartmentDto, Model.Department>();
 
 
 

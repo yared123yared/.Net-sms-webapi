@@ -26,5 +26,20 @@ namespace smsapi.Controllers
             var model = await _repo.GetData();
             return Ok(_mapper.Map<IEnumerable<DepartmentDto>>(model));
         }
+        [HttpGet("getAllDepartmentById")]
+        public async Task<IActionResult> GetDepartmentById(int id)
+        {
+            // here will be the department get by id method
+            var model = await _repo.GetDataById(id);
+            return Ok(_mapper.Map<IEnumerable<DepartmentDto>>(model));
+        }
+        [HttpPost("InsertDepartment")]
+        public async Task<IActionResult> CreateDeoartment(DepartmentDto departmentDto)
+        {
+            // here will be the insert method
+            var department = _mapper.Map<Department>(departmentDto);
+            await _repo.UpdateData(department);
+            return Ok(departmentDto);
+        }
     }
 }
